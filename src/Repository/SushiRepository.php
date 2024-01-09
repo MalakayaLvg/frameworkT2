@@ -1,10 +1,14 @@
 <?php
 namespace App\Repository;
 
-#[targetEntity(name: Sushi::class)]
+use App\Entity\Sushi;
+use Core\Attributes\TargetEntity;
+use Core\Repository\Repository;
+
+#[TargetEntity(name: Sushi::class)]
 class SushiRepository extends Repository
 {
-    protected string $tableName = "sushis";
+
 
     public function insert(string $name, string $type, string $fish):void
     {
@@ -24,6 +28,14 @@ class SushiRepository extends Repository
             "name"=>$name,
             "type"=>$type,
             "fish"=>$fish,
+            "id"=>$id
+        ]);
+    }
+
+    public function delete(int $id):void
+    {
+        $query = $this->pdo->prepare("DELETE FROM sushis WHERE id= :id");
+        $query->execute([
             "id"=>$id
         ]);
     }

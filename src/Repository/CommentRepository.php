@@ -1,9 +1,14 @@
 <?php
 namespace App\Repository;
 
+use App\Entity\Comment;
+use Core\Attributes\TargetEntity;
+use Core\Repository\Repository;
+
+
+#[TargetEntity(name: Comment::class)]
 class CommentRepository extends Repository
 {
-    protected string $tableName = "comments";
 
     public function findAllBySushi(int $id):array
     {

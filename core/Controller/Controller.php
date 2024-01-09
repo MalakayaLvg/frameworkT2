@@ -2,6 +2,7 @@
 
 namespace Core\Controller;
 
+use Core\Http\Response;
 use Core\View\View;
 
 abstract class Controller

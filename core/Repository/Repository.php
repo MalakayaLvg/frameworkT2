@@ -1,17 +1,42 @@
 <?php
-namespace App\Repository;
+namespace Core\Repository;
 
+use Core\Attributes\Table;
+use Core\Attributes\TargetEntity;
 use Core\Database\PDOmySQL;
 
 abstract class Repository
 {
     protected \PDO $pdo;
 
+    protected string $targetEntity;
     protected string $tableName;
 
     public function __construct()
     {
         $this->pdo = PDOmySQL::getPdo();
+        $this->targetEntity=$this->resolveTargetEntity();
+        $this->tableName=$this->resolveTableName();
+
+    }
+
+    protected function resolveTargetEntity()
+    {
+        $reflection = new \ReflectionClass($this);
+        $attributes = $reflection->getAttributes(TargetEntity::class);
+        $arguments = $attributes[0]->getArguments();
+        $name = $arguments['name'];
+        return $name;
+    }
+
+    public function resolveTableName()
+    {
+        $reflection = new \ReflectionClass($this->targetEntity);
+        $attributes = $reflection->getAttributes(Table::class);
+        $arguments = $attributes[0]->getArguments();
+        $tableName = $arguments['name'];
+        return $tableName;
+
     }
 
     public function findAll():array

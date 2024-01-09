@@ -1,9 +1,7 @@
 
 <div class="container d-flex justify-content-center flex-column align-items-center">
-    <h4><?= $sushi['name'] ?></h4>
-    <h5><?= $sushi['type'] ?></h5>
-    <h5><?= $sushi['fish'] ?></h5>
-
+    <h4><?= $pizza['name'] ?></h4>
+    <h5>Weight : <?= $pizza['size'] ?></h5>
     <a class="btn btn-primary" href="index.php">back</a>
 </div>
 
@@ -19,7 +17,7 @@
 <!--    --><?php //endforeach; ?>
 <!---->
 <!--</div>-->
-<!---->
+
 <!--<form action="createComment.php" method="post">-->
 <!--    <textarea  class="form-control" cols="30" rows="3" name="content" placeholder="commenter ce sushi"></textarea>-->
 <!--    <input type="hidden" name="sushiId" value="--><?php //= $sushi['id'] ?><!--">-->

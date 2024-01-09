@@ -43,8 +43,8 @@ class SushiController extends Controller
 
         $id = $_GET['id'];
 
-        $commentRepository = new CommentRepository();
-        $commentRepository->delete();
+        $sushiRepository = new SushiRepository();
+        $sushiRepository->delete($id);
 
         return $this->redirect();
     }
